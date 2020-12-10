@@ -15,7 +15,7 @@ function App() {
 
   const submit = (event) => {
     event.preventDefault();
-    setList(list.concat(text));
+    setList(list.concat(text.split(',')));
     setText('');
   }
 
