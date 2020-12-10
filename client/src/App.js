@@ -14,7 +14,6 @@ function App() {
 
   const submit = (event) => {
     event.preventDefault();
-    const form = event.target;
     setList(list.concat(text));
     setText('');
   }
