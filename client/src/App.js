@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import Input from './components/Input.js';
+import Display from './components/Display.js';
 
 //React hooks reference: https://reactjs.org/docs/hooks-overview.html
 
@@ -20,6 +21,7 @@ function App() {
 
   return <div className="App">
       <Input change={change} submit={submit} text={text}/>
+      <Display list={list}/>
     </div>;
 }
 
