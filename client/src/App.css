@@ -1,0 +1,48 @@
+
+h1, h2 {
+    font-family: 'Jost', sans-serif;
+    font-size: 38px;
+}
+
+li {
+    list-style-type: square;
+    color: #AEDD92;
+}
+
+img {
+    margin-left: 5px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+input[type=text] {
+    width: 250px;
+    border: none;
+}
+
+input[type=submit], button {
+    color: var(--main-dark-color);
+    border: none;
+    font-size: 18px;
+}
+
+input[type=submit] {
+    background-color: var(--main-light-color);
+}
+
+button {
+    background-color: var(--highlight-text-color);
+}
+
+input[type=submit]:hover, button:hover{
+    background-color: var(--hover-change-color);
+    cursor: pointer;
+}

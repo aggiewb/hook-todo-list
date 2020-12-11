@@ -1,3 +1,13 @@
+:root {
+    --highlight-text-color: #FDCA40;
+    --main-dark-color: #39393A;
+    --main-light-color: #C5DECD;
+    --hover-change-color: #FFF;
+}
+
 body {
-  
+    background-color: var(--main-dark-color);
+    color: var(--main-light-color);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
 }
