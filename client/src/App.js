@@ -21,6 +21,7 @@ function App() {
   }
 
   return <div className="App">
+      <h1>React Hook TODO List</h1>
       <Input change={change} submit={submit} text={text}/>
       <Display list={list}/>
     </div>;
