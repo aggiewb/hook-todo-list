@@ -14,7 +14,7 @@ function App() {
       setText(text);
   }
 
-  //TODO: Prevent only a comma being entered
+  //TODO: Prevent only a comma being entered, and only unique values
   const submit = (event) => {
     event.preventDefault();
     setList(list.concat(text.split(',')));
