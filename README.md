@@ -4,7 +4,7 @@ User Story #1: I can see a single input in which I can type an item to add to my
 
 User Story #2: I can submit the item in the input to add to my list.
 
-User Story #3: I can see my entire list of items, and the list is updated as I add new items.
+User Story #3: I can see my entire list of items, and the list is updated as I add new unique items.
 
 User Story #4: I can remove single items from my list with a clickable icon.
 
