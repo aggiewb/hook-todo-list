@@ -14,17 +14,29 @@ function App() {
       setText(text);
   }
 
-  //TODO: Prevent only a comma being entered, and only unique values
   const submit = (event) => {
     event.preventDefault();
-    setList(list.concat(text.split(',')));
+    let enteredItemsArr = text.split(',');
+    for(let i = 0; i < enteredItemsArr.length; i++){
+      let item = enteredItemsArr[i].trim();
+      if(item === '' || list.includes(item)){
+        enteredItemsArr.splice(i, i + 1);
+        i--;
+      } else {
+        enteredItemsArr[i] = item;
+      }
+
+    }
+    if(enteredItemsArr.length >= 1 && enteredItemsArr[0]){
+      setList([...enteredItemsArr, ...list]);
+    }
     setText('');
   }
 
   const removeItem = (event) => {
     const liElement = event.target.parentNode;
     const liElementId = liElement.id;
-    const newList = list.filter(item => item !== liElementId);
+    const newList = list.splice(item => item !== liElementId);
     setList(newList);
   }
 
