@@ -1,7 +1,6 @@
 import React from 'react';
 import xIcon from '../media/x-icon.png';
 
-//Add ability to clear list
 const Display = (props) => {
     return <ul>
         {props.list.map(item => {
