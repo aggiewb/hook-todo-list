@@ -17,18 +17,14 @@ function App() {
 
   const submit = (event) => {
     event.preventDefault();
-    let enteredItemsArr = text.split(',');
-    for(let i = 0; i < enteredItemsArr.length; i++){
-      let item = enteredItemsArr[i].trim();
-      if(item === '' || list.includes(item)){
-        enteredItemsArr.splice(i, i + 1);
-        i--;
-      } else {
-        enteredItemsArr[i] = item;
+    const enteredItemsArr = text.split(',').reduce((acc, item) => {
+      const trimItem = item.trim();
+      if(trimItem !== '' && !list.includes(trimItem)){
+        acc.push(trimItem);
       }
-
-    }
-    if(enteredItemsArr.length >= 1 && enteredItemsArr[0]){
+      return acc;
+    }, []);
+    if(enteredItemsArr.length > 0){
       setList([...enteredItemsArr, ...list]);
     }
     setText('');
