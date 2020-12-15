@@ -31,16 +31,21 @@ function App() {
   }
 
   const removeItem = (event) => {
+    console.log('clicked')
     const liElement = event.target.parentNode;
     const liElementId = liElement.id;
     const newList = list.splice(item => item !== liElementId);
     setList(newList);
   }
 
+  const clearList = () => {
+    setList([]);
+  }
+
   return <div className="App">
       <h1>React Hook TODO List</h1>
       <Input change={change} submit={submit} text={text}/>
-      <Display list={list} removeItem={removeItem}/>
+      <Display list={list} removeItem={removeItem} clearList={clearList}/>
     </div>;
 }
 
