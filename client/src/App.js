@@ -8,7 +8,9 @@ import Display from './components/Display.js';
 
 function App() {
   const [text, setText] = useState('');
-  const [list, setList] = useState([]);
+
+  const storedList = window.localStorage.getItem('list');
+  const [list, setList] = useState(storedList ? storedList.split(',') : []);
   
   const change = (event) => {
       const text = event.target.value;
@@ -24,8 +26,10 @@ function App() {
       }
       return acc;
     }, []);
+    const newList = [...enteredItemsArr, ...list];
     if(enteredItemsArr.length > 0){
-      setList([...enteredItemsArr, ...list]);
+      setList(newList);
+      window.localStorage.setItem('list', newList);
     }
     setText('');
   }
@@ -35,10 +39,12 @@ function App() {
     const liElementId = liElement.id;
     const newList = list.filter(item => item !== liElementId);
     setList(newList);
+    window.localStorage.setItem('list', newList);
   }
 
   const clearList = () => {
     setList([]);
+    window.localStorage.clear();
   }
 
   return <div className="App">
