@@ -19,7 +19,7 @@ function App() {
     event.preventDefault();
     const enteredItemsArr = text.split(',').reduce((acc, item) => {
       const trimItem = item.trim();
-      if(trimItem !== '' && !list.includes(trimItem)){
+      if(trimItem !== '' && !list.includes(trimItem) && !acc.includes(trimItem)){
         acc.push(trimItem);
       }
       return acc;
