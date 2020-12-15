@@ -31,10 +31,9 @@ function App() {
   }
 
   const removeItem = (event) => {
-    console.log('clicked')
     const liElement = event.target.parentNode;
     const liElementId = liElement.id;
-    const newList = list.splice(item => item !== liElementId);
+    const newList = list.filter(item => item !== liElementId);
     setList(newList);
   }
 
