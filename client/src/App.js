@@ -4,7 +4,6 @@ import Input from './components/Input.js';
 import Display from './components/Display.js';
 
 //React hooks reference: https://reactjs.org/docs/hooks-overview.html
-//TODO: Add storage of list to local storage and ability to clear list
 
 function App() {
   const [text, setText] = useState('');
