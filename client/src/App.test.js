@@ -14,7 +14,7 @@ it('App deeply renders as a smoke test', () => {
   mount(<App />);
 });
 
-it('renders App class child components, and initializes their props', () => {
+it('renders App and child components, and initializes their props', () => {
   const app = shallow(<App />);
 
   const input = app.find('Input');
