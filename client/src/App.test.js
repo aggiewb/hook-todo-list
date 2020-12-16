@@ -8,6 +8,8 @@ import xIcon from './media/x-icon.png';
 //shallow: https://enzymejs.github.io/enzyme/docs/api/shallow.html
 //mount: https://enzymejs.github.io/enzyme/docs/api/mount.html
 
+const EXPECTED_USER_INPUT = ['lorem', 'ipsum'];
+
 it('App deeply renders as a smoke test', () => {
   mount(<App />);
 });
@@ -51,15 +53,31 @@ it('renders an Input component with submit() and change() prop methods called', 
 });
 
 it('renders a Display component with an unordered list set to a valid string with each list item having a key and id set to the valid string and contains an image of an X icon', () => {
-  const EXPECTED_USER_INPUT = ['lorem', 'ipsum'];
   const display = shallow(<Display list={EXPECTED_USER_INPUT}/>);
-  const listElement = display.find('li');
+  const listElements = display.find('li');
 
-  listElement.forEach((item, i) => {
+  listElements.forEach((item, i) => {
     const userInput = EXPECTED_USER_INPUT[i];
     const image = item.find('img');
     expect(item.prop('id')).toEqual(userInput);
     expect(item.text()).toEqual(userInput);
     expect(image.prop('src')).toEqual(xIcon);
   });
+});
+
+it('renders a Display component with a removeItem() and clearList() prop methods called', () => {
+  const removeItem = jest.fn();
+  const clearList = jest.fn();
+  const display = shallow(<Display list={EXPECTED_USER_INPUT} removeItem={removeItem} clearList={clearList}/>);
+  const listElements  = display.find('li');
+
+  listElements.forEach(item => {
+    const image = item.find('img');
+    image.simulate('click');
+    expect(removeItem).toHaveBeenCalled();
+  });
+
+  const button = display.find('button');
+  button.simulate('click');
+  expect(clearList).toHaveBeenCalled();
 });
