@@ -34,3 +34,17 @@ it('renders an Input component with an input value set to a valid string', () =>
 
   expect(inputElement.prop('value')).toEqual(EXPECTED_USER_INPUT);
 });
+
+it('renders an Input component with submit() and change() prop methods called', () => {
+  const change = jest.fn();
+  const submit = jest.fn();
+  const input = shallow(<Input change={change} submit={submit} />);
+  const inputElement = input.find(`input[type='text']`);
+  const form = input.find(`form`);
+
+  inputElement.simulate('change');
+  expect(change).toHaveBeenCalled();
+
+  form.simulate('submit');
+  expect(submit).toHaveBeenCalled();
+});
