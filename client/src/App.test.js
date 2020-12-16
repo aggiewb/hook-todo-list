@@ -2,6 +2,7 @@ import { shallow, mount } from 'enzyme';
 import App from './App';
 import Input from './components/Input';
 import Display from './components/Display';
+import xIcon from './media/x-icon.png';
 
 //https://jestjs.io/docs/en/expect
 //shallow: https://enzymejs.github.io/enzyme/docs/api/shallow.html
@@ -47,4 +48,18 @@ it('renders an Input component with submit() and change() prop methods called', 
 
   form.simulate('submit');
   expect(submit).toHaveBeenCalled();
+});
+
+it('renders a Display component with an unordered list set to a valid string with each list item having a key and id set to the valid string and contains an image of an X icon', () => {
+  const EXPECTED_USER_INPUT = ['lorem', 'ipsum'];
+  const display = shallow(<Display list={EXPECTED_USER_INPUT}/>);
+  const listElement = display.find('li');
+
+  listElement.forEach((item, i) => {
+    const userInput = EXPECTED_USER_INPUT[i];
+    const image = item.find('img');
+    expect(item.prop('id')).toEqual(userInput);
+    expect(item.text()).toEqual(userInput);
+    expect(image.prop('src')).toEqual(xIcon);
+  });
 });
