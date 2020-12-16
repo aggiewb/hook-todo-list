@@ -8,3 +8,19 @@ import App from './App';
 it('App deeply renders as a smoke test', () => {
   mount(<App />);
 });
+
+it('renders App class child components, and initializes their props', () => {
+  const app = shallow(<App />);
+
+  const input = app.find('Input');
+  expect(input.exists()).toEqual(true);
+  expect(input.prop('text')).toEqual('');
+  expect(input.prop('change')).toBeDefined();
+  expect(input.prop('submit')).toBeDefined();
+
+  const display = app.find('Display');
+  expect(display.exists()).toEqual(true);
+  expect(display.prop('list')).toEqual([]);
+  expect(display.prop('removeItem')).toBeDefined();
+  expect(display.prop('clearList')).toBeDefined();
+});
