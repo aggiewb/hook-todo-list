@@ -9,6 +9,7 @@ import xIcon from './media/x-icon.png';
 //mount: https://enzymejs.github.io/enzyme/docs/api/mount.html
 
 const EXPECTED_USER_INPUT = ['lorem', 'ipsum'];
+const EXPECTED_USER_STRING = 'lorem ipsum';
 
 it('App deeply renders as a smoke test', () => {
   mount(<App />);
@@ -31,11 +32,10 @@ it('renders App and child components, and initializes their props', () => {
 });
 
 it('renders an Input component with an input value set to a valid string', () => {
-  const EXPECTED_USER_INPUT = 'lorem ipsum';
-  const input = shallow(<Input text={EXPECTED_USER_INPUT} />);
+  const input = shallow(<Input text={EXPECTED_USER_STRING} />);
   const inputElement = input.find(`input[type='text']`);
 
-  expect(inputElement.prop('value')).toEqual(EXPECTED_USER_INPUT);
+  expect(inputElement.prop('value')).toEqual(EXPECTED_USER_STRING);
 });
 
 it('renders an Input component with submit() and change() prop methods called', () => {
@@ -81,3 +81,16 @@ it('renders a Display component with a removeItem() and clearList() prop methods
   button.simulate('click');
   expect(clearList).toHaveBeenCalled();
 });
+
+//TODO: Add tests for App component methods change(), submit(), removeItem(), and clearList()
+// it('calls App component method change() passing in an event with valid string', () => {
+//   const app = mount(<App />);
+//   const inputElement = app.find(`input[type='text']`);
+
+//   inputElement.simulate('change', {
+//     target: {
+//       value: EXPECTED_USER_STRING
+//     }
+//   });
+//   expect(inputElement.prop('value')).toEqual(EXPECTED_USER_STRING);
+// });
