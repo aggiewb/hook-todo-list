@@ -82,15 +82,15 @@ it('renders a Display component with a removeItem() and clearList() prop methods
   expect(clearList).toHaveBeenCalled();
 });
 
-//TODO: Add tests for App component methods change(), submit(), removeItem(), and clearList()
-// it('calls App component method change() passing in an event with valid string', () => {
-//   const app = mount(<App />);
-//   const inputElement = app.find(`input[type='text']`);
+it('calls App component method change() passing in an event with valid string which update the Input child component text property', () => {
+  const app = shallow(<App />);
+  const change = app.find('Input').prop('change');
+  change({
+    target: {
+      value: EXPECTED_USER_STRING
+    }
+  });
+  expect(app.find('Input').prop('text')).toEqual(EXPECTED_USER_STRING);
+});
 
-//   inputElement.simulate('change', {
-//     target: {
-//       value: EXPECTED_USER_STRING
-//     }
-//   });
-//   expect(inputElement.prop('value')).toEqual(EXPECTED_USER_STRING);
-// });
+//TODO: Add tests for App component methods submit(), removeItem(), and clearList()
