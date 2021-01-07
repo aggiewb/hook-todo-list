@@ -99,4 +99,72 @@ describe('App', () => {
     });
     expect(app.find('Input').prop('text')).toEqual(EXPECTED_USER_STRING);
   });
+
+  it('calls App component method submit() with change() called passing in an event with valid string', () => {
+    const app = shallow(<App />);
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING
+      }
+    });
+
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    expect(app.find('Display').prop('list')).toEqual(EXPECTED_USER_INPUT);
+  });
+
+  it('calls App component method submit() with change() called passing in an event with a string with extra spaces', () => {
+    const app = shallow(<App />);
+    const EXPECTED_USER_STRING_EXTRA_SPACES = ' lorem , ipsum ';
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING_EXTRA_SPACES
+      }
+    });
+
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    expect(app.find('Display').prop('list')).toEqual(EXPECTED_USER_INPUT);
+  });
+
+  it('calls App component method submit() with change() called passing in an event with string containing duplicate items', () => {
+    const app = shallow(<App />);
+    const EXPECTED_USER_STRING_DUPLICATE_ITEM = 'lorem, lorem';
+    const EXPECTED_USER_INPUT_SINGLE_ITEM = ['lorem'];
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING_DUPLICATE_ITEM
+      }
+    });
+
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    expect(app.find('Display').prop('list')).toEqual(EXPECTED_USER_INPUT_SINGLE_ITEM);
+  });
+
+  it('calls App component method submit() with change() called passing in an event with a comma only string', () => {
+    const app = shallow(<App />);
+    const EXPECTED_USER_STRING_COMMA_ONLY = ',';
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING_COMMA_ONLY
+      }
+    });
+
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    expect(app.find('Display').prop('list')).toEqual([]);
+  });
 });
