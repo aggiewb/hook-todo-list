@@ -88,4 +88,15 @@ describe('App', () => {
     button.simulate('click');
     expect(clearList).toHaveBeenCalled();
   });
+
+  it('calls App component method change() passing in an event with valid string', () => {
+    const app = shallow(<App />);
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING
+      }
+    });
+    expect(app.find('Input').prop('text')).toEqual(EXPECTED_USER_STRING);
+  });
 });
