@@ -167,49 +167,49 @@ describe('App', () => {
     });
     expect(app.find('Display').prop('list')).toEqual([]);
   });
-});
 
-it('calls App component method removeItem() after change() and submit() called passing in an event with valid string', () => {
-  const app = shallow(<App />);
-  const change = app.find('Input').prop('change');
-  change({
-    target: {
-      value: EXPECTED_USER_STRING
-    }
-  });
-
-  const submit = app.find('Input').prop('submit');
-  submit({
-    preventDefault: () => jest.fn()
-  });
-  
-  const removeItem = app.find('Display').prop('removeItem');
-  removeItem({
-    target: {
-      parentNode: {
-        id: EXPECTED_USER_INPUT[1]
+  it('calls App component method removeItem() after change() and submit() called passing in an event with valid string', () => {
+    const app = shallow(<App />);
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING
       }
-    }
-  });
-  expect(app.find('Display').prop('list')).toEqual([EXPECTED_USER_INPUT[0]]);
-});
+    });
 
-it('calls App component method clearList() after change() and submit() called passing in an event with valid string', () => {
-  const app = shallow(<App />);
-  const change = app.find('Input').prop('change');
-  change({
-    target: {
-      value: EXPECTED_USER_STRING
-    }
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    
+    const removeItem = app.find('Display').prop('removeItem');
+    removeItem({
+      target: {
+        parentNode: {
+          id: EXPECTED_USER_INPUT[1]
+        }
+      }
+    });
+    expect(app.find('Display').prop('list')).toEqual([EXPECTED_USER_INPUT[0]]);
   });
 
-  const submit = app.find('Input').prop('submit');
-  submit({
-    preventDefault: () => jest.fn()
-  });
-  
-  const clearList = app.find('Display').prop('clearList');
-  clearList();
+  it('calls App component method clearList() after change() and submit() called passing in an event with valid string', () => {
+    const app = shallow(<App />);
+    const change = app.find('Input').prop('change');
+    change({
+      target: {
+        value: EXPECTED_USER_STRING
+      }
+    });
 
-  expect(app.find('Display').prop('list')).toEqual([]);
+    const submit = app.find('Input').prop('submit');
+    submit({
+      preventDefault: () => jest.fn()
+    });
+    
+    const clearList = app.find('Display').prop('clearList');
+    clearList();
+
+    expect(app.find('Display').prop('list')).toEqual([]);
+  });
 });
